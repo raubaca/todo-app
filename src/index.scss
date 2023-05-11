@@ -1,51 +1,45 @@
+// Reset
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
 * {
   margin: 0;
   padding: 0;
 }
-
 html {
   height: 100%;
   font-size: 62.5%;
 }
-
 body {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
-
 img {
   display: block;
   max-width: 100%;
 }
-
 input,
 button {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   color: inherit;
   background: transparent;
   font: inherit;
   border: 0;
 }
-
 ul {
   list-style: none;
 }
-
 #root {
   isolation: isolate;
 }
 
+// Variables
 :root {
   --bright-blue: hsl(220, 98%, 61%);
   --check-bg: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
   --x-light-gray: hsl(0, 0%, 98%);
   --x-light-grayish-blue: hsl(236, 33%, 92%);
   --light-grayish-blue: hsl(233, 11%, 84%);
@@ -54,6 +48,7 @@ ul {
   --x-dark-blue: hsl(235, 21%, 11%);
   --x-dark-grayish-blue: hsl(235, 19%, 35%);
   --x-dark-desaturated-blue: hsl(235, 24%, 19%);
+
   --bg-body: var(--x-dark-blue);
   --bg-card: var(--x-dark-desaturated-blue);
   --color-accent: var(--bright-blue);
@@ -62,195 +57,209 @@ ul {
   --color-text: var(--x-dark-grayish-blue);
   --color-text-hover: var(--x-light-grayish-blue);
   --color-title: var(--x-light-gray);
+
   --gap: 2.4rem;
   --tab-height: 6.4rem;
+
   --bg-header: url(./assets/bg-mobile-dark.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
-}
-@media (min-width: 60rem) {
-  :root {
+
+  @media (min-width: 60rem) {
     --bg-header: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
   }
 }
-
-[data-theme=light] {
+[data-theme='light'] {
   --bg-body: var(--x-light-grayish-blue);
   --bg-card: var(--x-light-gray);
   --color-border: var(--light-grayish-blue);
   --color-label: var(--x-dark-grayish-blue);
   --color-text: var(--dark-grayish-blue);
   --color-text-hover: var(--x-dark-grayish-blue);
+
   --bg-header: url(./assets/bg-mobile-light.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
-}
-@media (min-width: 60rem) {
-  [data-theme=light] {
+
+  @media (min-width: 60rem) {
     --bg-header: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
   }
 }
 
+// Base
 body {
   background: var(--bg-body);
   color: var(--color-text);
   font-size: 1.8rem;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-weight: 400;
+
   padding: 8rem 1rem 0;
 }
-
 button,
-[type=checkbox],
+[type='checkbox'],
 label {
   cursor: pointer;
 }
-
 button {
   padding: 1rem;
-  margin: -1rem;
+  margin: -1rem; // Add click area
 }
 
-.todos, .new-todo {
+// Shared
+%card {
   background: var(--bg-card);
   border-radius: 0.6rem;
   box-shadow: 0px 3rem 3rem 0rem rgba(0, 0, 0, 0.26);
 }
-
-.actions, .todo, .new-todo {
+%todo {
   display: flex;
   align-items: center;
   gap: var(--gap);
   height: var(--tab-height);
   padding-inline: var(--gap);
 }
-
-.todo__check, .new-todo::before {
+%check {
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
   border: 1px solid var(--color-border);
 }
 
+// Layout
 #root {
   max-width: 54rem;
   margin: auto;
 }
 
+// Header
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 4.2rem;
-}
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  z-index: -1;
-  background: var(--bg-header);
-}
-@media (min-width: 60rem) {
-  .header::before {
-    height: 300px;
+  // header bg
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    z-index: -1;
+    background: var(--bg-header);
+    @media (min-width: 60rem) {
+      height: 300px;
+    }
   }
 }
-
 .title {
   font-size: 4rem;
   color: var(--color-title);
   letter-spacing: 1.5rem;
   line-height: 3.6rem;
 }
-
 .toggle-theme-button {
   border-radius: 50%;
 }
 
+// Form
 .new-todo {
+  @extend %card;
+  @extend %todo;
   margin-bottom: 2.4rem;
-}
-.new-todo::before {
-  content: "";
-}
-.new-todo__input {
-  flex: 1;
-  align-self: stretch;
-  color: var(--color-label);
-  letter-spacing: -0.02rem;
+  &::before {
+    @extend %check;
+    content: '';
+  }
+  &__input {
+    flex: 1;
+    align-self: stretch;
+    color: var(--color-label);
+    letter-spacing: -0.02rem; // Perfect Pixel! :)
+  }
 }
 
+// List
+.todos {
+  @extend %card;
+}
 .todo {
+  @extend %todo;
   border-bottom: 1px solid var(--color-border);
-}
-.todo__check:checked {
-  background: url(./assets/icon-check.svg) no-repeat center/1rem, var(--check-bg) border-box;
-  border-color: transparent;
-}
-.todo__text {
-  color: var(--color-label);
-}
-.todo__delete {
-  margin-left: auto;
-}
-:checked + .todo__text {
-  color: var(--color-text);
-  text-decoration: line-through;
+  &__check {
+    @extend %check;
+    &:checked {
+      background: url(./assets/icon-check.svg) no-repeat center / 1rem,
+        var(--check-bg) border-box;
+      border-color: transparent;
+    }
+  }
+  &__text {
+    color: var(--color-label);
+  }
+  &__delete {
+    margin-left: auto;
+  }
+  :checked + &__text {
+    color: var(--color-text);
+    text-decoration: line-through;
+  }
 }
 
+// Actions
 .actions {
+  @extend %todo;
   font-size: 1.4rem;
   justify-content: space-between;
   overflow: auto;
   white-space: nowrap;
-}
-.actions__filter {
-  font-weight: 700;
-  letter-spacing: -0.02rem;
-}
-.actions__filter[aria-pressed=true] {
-  color: var(--color-accent);
-}
-@media (min-width: 60rem) {
-  .actions {
+  &__filter {
+    font-weight: 700;
+    letter-spacing: -0.02rem; // Perfect Pixel! :)
+    &[aria-pressed='true'] {
+      color: var(--color-accent);
+    }
+  }
+  @media (min-width: 60rem) {
     height: 5rem;
-  }
-  .actions__count {
-    margin-right: auto;
-  }
-  .actions__clear {
-    margin-left: auto;
+    &__count {
+      margin-right: auto;
+    }
+    &__clear {
+      margin-left: auto;
+    }
   }
 }
 
+// State:focus
 .new-todo__input:focus-visible {
   outline: 0;
 }
-
 .new-todo:focus-within,
 button:focus-visible,
-input[type=checkbox]:focus-visible {
+input[type='checkbox']:focus-visible {
   outline: thin solid var(--color-accent);
 }
-
 .todo__delete:focus {
   transform: scale(1);
 }
 
+// State:hover
 @media (hover: hover) {
   .toggle-theme-button:hover img {
     filter: drop-shadow(0 0 1rem var(--color-accent));
   }
-  .todo__delete {
-    transform: scale(0);
-  }
-  .todo:hover .todo__check:not(:checked) {
-    background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box, var(--check-bg) border-box;
-    border-color: transparent;
-  }
-  .todo:hover .todo__delete {
-    transform: scale(1);
+  .todo {
+    &__delete {
+      transform: scale(0);
+    }
+    &:hover &__check:not(:checked) {
+      background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+        var(--check-bg) border-box;
+      border-color: transparent;
+    }
+    &:hover &__delete {
+      transform: scale(1);
+    }
   }
   .actions__filter:hover,
   .actions__clear:hover {
