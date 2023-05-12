@@ -1,40 +1,3 @@
-// Reset
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-html {
-  height: 100%;
-  font-size: 62.5%;
-}
-body {
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-img {
-  display: block;
-  max-width: 100%;
-}
-input,
-button {
-  appearance: none;
-  color: inherit;
-  background: transparent;
-  font: inherit;
-  border: 0;
-}
-ul {
-  list-style: none;
-}
-#root {
-  isolation: isolate;
-}
-
 // Variables
 :root {
   --bright-blue: hsl(220, 98%, 61%);
@@ -82,6 +45,42 @@ ul {
   @media (min-width: 600px) {
     --bg-header: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
   }
+}
+
+// Reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+  font: 62.5% sans-serif; // Reset font
+}
+body {
+  line-height: 1;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+input,
+button {
+  appearance: none;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  border: 0;
+}
+ul {
+  list-style: none;
+}
+#root {
+  isolation: isolate;
 }
 
 // Base
@@ -244,7 +243,7 @@ input[type='checkbox']:focus-visible {
 }
 
 // State:hover
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .toggle-theme-button:hover img {
     filter: drop-shadow(0 0 1rem var(--color-accent));
   }

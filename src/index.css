@@ -1,48 +1,3 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  height: 100%;
-  font-size: 62.5%;
-}
-
-body {
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-input,
-button {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  color: inherit;
-  background: transparent;
-  font: inherit;
-  border: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-#root {
-  isolation: isolate;
-}
-
 :root {
   --bright-blue: hsl(220, 98%, 61%);
   --check-bg: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
@@ -87,6 +42,50 @@ ul {
   [data-theme=light] {
     --bg-header: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
   }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  font: 62.5% sans-serif;
+}
+
+body {
+  line-height: 1;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  border: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+#root {
+  isolation: isolate;
 }
 
 body {
@@ -207,6 +206,7 @@ button {
 }
 .actions__filter {
   font-weight: 700;
+  letter-spacing: -0.02rem;
 }
 .actions__filter[aria-pressed=true] {
   color: var(--color-accent);
@@ -237,7 +237,7 @@ input[type=checkbox]:focus-visible {
   transform: scale(1);
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .toggle-theme-button:hover img {
     filter: drop-shadow(0 0 1rem var(--color-accent));
   }
