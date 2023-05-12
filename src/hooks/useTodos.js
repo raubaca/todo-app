@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { FILTERS } from '../utils/constants';
 
 export const useTodos = () => {
-  const [todos, setTodos] = useState([
-    { id: 1, text: 'Work out', completed: true },
-    { id: 2, text: 'Eat', completed: false },
-    { id: 3, text: 'Sleep', completed: false },
-    { id: 4, text: 'Enjoy life!', completed: false },
-  ]);
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem('TODOS')) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('TODOS', JSON.stringify(todos));
+  }, [todos]);
 
   const [filter, setFilter] = useState('All');
 
@@ -18,24 +19,17 @@ export const useTodos = () => {
       text,
       completed: false,
     };
-    setTodos((current) => [...current, newTodo]);
+    setTodos((currentTodos) => [newTodo, ...currentTodos]);
     setFilter('All');
   };
 
-  const toggleTodo = (id, completed) => {
+  const toggleTodo = (id, completed) =>
     setTodos((current) =>
-      current.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed };
-        }
-        return todo;
-      })
+      current.map((todo) => (todo.id === id ? { ...todo, completed } : todo))
     );
-  };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id) =>
     setTodos((current) => current.filter((todo) => todo.id !== id));
-  };
 
   const clearTodos = () => {
     setTodos((current) => current.filter(FILTERS['Active']));

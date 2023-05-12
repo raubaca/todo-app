@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { TodosContext } from '../App';
 import { FILTERS, FILTER_LABELS } from '../utils/constants';
 
-const Filters = () => {
+const Actions = () => {
   const { todos, clearTodos, filter, filterTodos } = useContext(TodosContext);
 
   return (
@@ -28,4 +28,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default Actions;

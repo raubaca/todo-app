@@ -91,10 +91,15 @@ ul {
 body {
   background: var(--bg-body);
   color: var(--color-text);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400;
-  padding: 8rem 1rem 0;
+  padding: 8rem 1rem 1rem;
+}
+@media (min-width: 600px) {
+  body {
+    font-size: 1.8rem;
+  }
 }
 
 button,
@@ -108,7 +113,7 @@ button {
   margin: -1rem;
 }
 
-.todos, .new-todo {
+.actions, .todos, .new-todo {
   background: var(--bg-card);
   border-radius: 0.6rem;
   box-shadow: 0px 3rem 3rem 0rem rgba(0, 0, 0, 0.26);
@@ -180,7 +185,18 @@ button {
   letter-spacing: -0.02rem;
 }
 
-.todo {
+.todos {
+  margin-bottom: 2.4rem;
+}
+@media (min-width: 600px) {
+  .todos {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 0;
+  }
+}
+
+.todo:not(:last-child) {
   border-bottom: 1px solid var(--color-border);
 }
 .todo__check:checked {
@@ -197,12 +213,15 @@ button {
   color: var(--color-text);
   text-decoration: line-through;
 }
+@media (min-width: 600px) {
+  .todo:last-child {
+    display: none;
+  }
+}
 
 .actions {
-  font-size: 1.4rem;
-  justify-content: space-between;
-  overflow: auto;
-  white-space: nowrap;
+  font-size: 1.8rem;
+  justify-content: center;
 }
 .actions__filter {
   font-weight: 700;
@@ -211,15 +230,26 @@ button {
 .actions__filter[aria-pressed=true] {
   color: var(--color-accent);
 }
+.actions__count {
+  margin-right: auto;
+}
+.actions__clear {
+  margin-left: auto;
+}
+.actions :first-child,
+.actions :last-child {
+  display: none;
+}
 @media (min-width: 600px) {
   .actions {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    font-size: 1.4rem;
     height: 5rem;
   }
-  .actions__count {
-    margin-right: auto;
-  }
-  .actions__clear {
-    margin-left: auto;
+  .actions :first-child,
+  .actions :last-child {
+    display: inherit;
   }
 }
 
@@ -243,6 +273,7 @@ input[type=checkbox]:focus-visible {
   }
   .todo__delete {
     transform: scale(0);
+    transition: transform 0.3s ease-out;
   }
   .todo:hover .todo__check:not(:checked) {
     background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box, var(--check-bg) border-box;
@@ -255,4 +286,7 @@ input[type=checkbox]:focus-visible {
   .actions__clear:hover {
     color: var(--color-label);
   }
+}
+* {
+  transition: background-color 0.2s ease-in-out;
 }

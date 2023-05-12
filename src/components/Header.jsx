@@ -3,7 +3,7 @@ import { useTheme } from '../hooks/useTheme';
 import sunIcon from '../assets/icon-sun.svg';
 import moonIcon from '../assets/icon-moon.svg';
 
-const THEME = {
+const BUTTON = {
   dark: {
     title: 'Light mode',
     icon: sunIcon,
@@ -21,11 +21,11 @@ const Header = () => {
     <header className="header">
       <h1 className="title">TODO</h1>
       <button
-        title={THEME[theme].title}
+        title={BUTTON[theme].title}
         className="toggle-theme-button"
         onClick={toggleTheme}
       >
-        <img src={THEME[theme].icon} alt="Icon" width={26} height={26} />
+        <img src={BUTTON[theme].icon} alt="Icon" width={26} height={26} />
       </button>
     </header>
   );
