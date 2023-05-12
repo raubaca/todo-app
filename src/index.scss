@@ -64,7 +64,7 @@ ul {
   --bg-header: url(./assets/bg-mobile-dark.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
 
-  @media (min-width: 60rem) {
+  @media (min-width: 600px) {
     --bg-header: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
   }
 }
@@ -79,7 +79,7 @@ ul {
   --bg-header: url(./assets/bg-mobile-light.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
 
-  @media (min-width: 60rem) {
+  @media (min-width: 600px) {
     --bg-header: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
   }
 }
@@ -146,7 +146,7 @@ button {
     height: 200px;
     z-index: -1;
     background: var(--bg-header);
-    @media (min-width: 60rem) {
+    @media (min-width: 600px) {
       height: 300px;
     }
   }
@@ -219,7 +219,7 @@ button {
       color: var(--color-accent);
     }
   }
-  @media (min-width: 60rem) {
+  @media (min-width: 600px) {
     height: 5rem;
     &__count {
       margin-right: auto;

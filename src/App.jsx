@@ -11,7 +11,14 @@ const FILTERS = {
 
 function App() {
   const [theme, setTheme] = useState('dark');
-  const [todos, setTodos] = useState([]);
+
+  const [todos, setTodos] = useState([
+    { id: 1, text: 'Work out', completed: true },
+    { id: 2, text: 'Eat', completed: false },
+    { id: 3, text: 'Sleep', completed: false },
+    { id: 4, text: 'Enjoy life!', completed: false },
+  ]);
+
   const inputRef = useRef('');
   const [filter, setFilter] = useState('All');
 

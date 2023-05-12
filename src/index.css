@@ -67,7 +67,7 @@ ul {
   --bg-header: url(./assets/bg-mobile-dark.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
 }
-@media (min-width: 60rem) {
+@media (min-width: 600px) {
   :root {
     --bg-header: url(./assets/bg-desktop-dark.jpg) no-repeat center top / cover;
   }
@@ -83,7 +83,7 @@ ul {
   --bg-header: url(./assets/bg-mobile-light.jpg) no-repeat center top / cover;
   --bg-desktop: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
 }
-@media (min-width: 60rem) {
+@media (min-width: 600px) {
   [data-theme=light] {
     --bg-header: url(./assets/bg-desktop-light.jpg) no-repeat center top / cover;
   }
@@ -151,7 +151,7 @@ button {
   z-index: -1;
   background: var(--bg-header);
 }
-@media (min-width: 60rem) {
+@media (min-width: 600px) {
   .header::before {
     height: 300px;
   }
@@ -207,12 +207,11 @@ button {
 }
 .actions__filter {
   font-weight: 700;
-  letter-spacing: -0.02rem;
 }
 .actions__filter[aria-pressed=true] {
   color: var(--color-accent);
 }
-@media (min-width: 60rem) {
+@media (min-width: 600px) {
   .actions {
     height: 5rem;
   }
