@@ -23,6 +23,7 @@ const Form = () => {
         className="new-todo__input"
         autoComplete="off"
         placeholder="Create a new todo..."
+        aria-label="New todo"
       />
     </form>
   );

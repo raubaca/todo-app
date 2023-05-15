@@ -13,14 +13,16 @@ const Todos = () => {
       {todos.filter(FILTERS[filter]).map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
-      <li className="todo">
-        <span className="actions__count">
-          {todos.filter(FILTERS['Active']).length} item(s) left
-        </span>
-        <button className="actions__clear" onClick={clearTodos}>
-          Clear Completed
-        </button>
-      </li>
+      {todos.length > 0 && (
+        <li className="todo">
+          <span className="actions__count">
+            {todos.filter(FILTERS['Active']).length} item(s) left
+          </span>
+          <button className="actions__clear" onClick={clearTodos}>
+            Clear Completed
+          </button>
+        </li>
+      )}
     </ul>
   );
 };

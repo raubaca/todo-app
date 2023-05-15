@@ -242,10 +242,12 @@ button {
 }
 @media (min-width: 600px) {
   .actions {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
     font-size: 1.4rem;
     height: 5rem;
+  }
+  .actions:not([data-count="0"]) {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
   .actions :first-child,
   .actions :last-child {
